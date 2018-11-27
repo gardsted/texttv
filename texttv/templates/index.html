@@ -1,0 +1,68 @@
+<html>
+<head>
+<meta charset=utf-8>
+<style>
+body  {
+    color: #dddddd;
+    background-color: black;
+    font-family: "Lucida Console", Monaco, monospace;
+}
+body *{font-size: 103%%}
+
+table{
+    background-color: #111e3f;
+    border: none;
+    padding: 10px;
+}
+th{
+    font-weight: normal;
+    width: 300px;
+    border: none;
+}
+td{
+    width: 600px;
+    border: none;
+}
+h1,h2,h3,h4,h5{ color: #e2e220; padding-top: 10px; text-align: center; font-weight: normal; font-size:103%}
+h1{font-weight: bold}
+*.r{text-align:right}
+*.l{text-align:left}
+p{word-break: break-word; padding-top: 10px;}
+input,textarea{width:100%; max-width:600px;}
+textarea{min-height:300px; padding: 5px;}
+input.top {width:49%; max-width:300px;}
+input.top#right {text-align:right;}
+</style>
+</head>
+<body>
+
+<form method=POST>
+<input type=submit name=done value="Download / Done"><br>
+<input class=top name=left placeholder="13 char(max) left" value="{{left}}">
+<input class=top name=right id=right prefix placeholder="15 char(max) right" value="{{right}}"><br>
+<textarea name=longtext placeholder="
+Enter markdown
+
+# this is a top heading, 
+
+## this is a sub heading
+
+<br> is a hard page break
+">{{longtext}}
+</textarea><br>
+<input type=submit name=preview value="Preview"><br>
+</form>
+
+
+
+<table border=0 id=ttvtable>
+	<tr><th class=l>${left}</th><th class=r>{{right}}</th></tr>
+<tr><td class=l colspan=2>
+		<h1>Hello world</h1>
+		<p> This is tired life
+<p></td></tr>
+</table>
+
+
+</body>
+</html>
