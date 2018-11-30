@@ -16,29 +16,30 @@ table{
 }
 th{
     font-weight: normal;
-    width: 300px;
+    width: {{width/2}}px;
     border: none;
 }
 td{
-    width: 600px;
+	width: ${{width}}px;
     border: none;
+    padding-top:10px;
 }
-h1,h2,h3,h4,h5{ color: #e2e220; padding-top: 10px; text-align: center; font-weight: normal; font-size:103%}
+h1,h2,h3,h4,h5{ color: #e2e220; text-align: center; font-weight: normal; font-size:103%}
 h1{font-weight: bold}
 *.r{text-align:right}
 *.l{text-align:left}
 p{word-break: break-word; padding-top: 10px;}
-input,textarea{width:100%; max-width:600px;}
-textarea{min-height:300px; padding: 5px;}
-input.top {width:49%; max-width:300px;}
+input,textarea{width:100%; max-width:{{width}}px;}
+textarea{min-height:{{width/2}}px; padding: 5px;}
+input.top {width:100%; max-width:{{width}}px;}
 input.top#right {text-align:right;}
 </style>
 </head>
 <body>
 
-<form method=POST>
+<form method=GET>
 <input type=submit name=done value="Download / Done"><br>
-<input class=top name=left placeholder="13 char(max) left" value="{{left}}">
+<input class=top name=left placeholder="13 char(max) left" value="{{left}}"><br>
 <input class=top name=right id=right prefix placeholder="15 char(max) right" value="{{right}}"><br>
 <textarea name=longtext placeholder="
 Enter markdown
@@ -53,16 +54,14 @@ Enter markdown
 <input type=submit name=preview value="Preview"><br>
 </form>
 
-
-
+{% for t in rendered %}
 <table border=0 id=ttvtable>
-	<tr><th class=l>${left}</th><th class=r>{{right}}</th></tr>
-<tr><td class=l colspan=2>
-		<h1>Hello world</h1>
-		<p> This is tired life
+	<tr><th class=l>{{t.left}}</th><th class=r>{{t.right}}</th></tr>
+	<tr><td class=l colspan=2>{{t.html}}
 <p></td></tr>
 </table>
-
+<p>
+{% endfor %}
 
 </body>
 </html>
