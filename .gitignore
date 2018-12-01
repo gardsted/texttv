@@ -6,4 +6,5 @@ dist
 *.p12
 *.cert
 *.secret
+__pycache__
 
