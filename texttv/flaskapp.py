@@ -17,11 +17,13 @@ It will be converted to html, but all pre-eisting html-tags will be stripped
 """
 from html.parser import HTMLParser
 import os
-from flask import Flask, request
+from flask import Flask, request, send_from_directory
 import jinja2
 import markdown
 
-NUMCHARS = 400
+NUMCHARS = 800
+WIDTH=800
+FONTSIZE=115
 
 
 template_dir = os.path.join(os.path.dirname(__file__), 'templates')
@@ -96,7 +98,20 @@ def index():
         if k in ["left", "right", "longtext"])
     form["left"] = form.get("left", "")[:25]
     form["right"] = form.get("right", "")[-25:]
-    form["width"] = 500
+    form["width"] = WIDTH
+    form["fontsize"] = FONTSIZE
+    return template.render(
+        rendered=mdrendered(**form),
+        **form
+    )
+
+@app.route('/fan/', methods=["GET", "POST"])
+def fan():
+    template = jinja_env.get_template('fan.html')
+    form = dict(
+        (k.strip(), MLStripper(v.strip()).get_data())
+        for k, v in request.args.items()
+        if k in ["left", "right", "longtext"])
     return template.render(
         rendered=mdrendered(**form),
         **form

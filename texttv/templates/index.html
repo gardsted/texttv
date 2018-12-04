@@ -7,7 +7,6 @@ body  {
     background-color: black;
     font-family: "Lucida Console", Monaco, monospace;
 }
-table *{font-size: 103%%}
 
 table{
     font-family: "Lucida Console", Monaco, monospace;
@@ -25,10 +24,13 @@ table td{
 	width: ${{width}}px;
     border: none;
 }
-table h1,table h2,table h3,table h4,table h5{ 
-    color: #e2e220; text-align: center; font-weight: normal; font-size:103%
+table *{ 
+    font-size:{{fontsize}}%;
+    font-weight: bold; 
 }
-table h1{font-weight: bold}
+table h1,table h2,table h3,table h4,table h5{ 
+    color: #e2e220; text-align: center; font-weight: bold; 
+}
 table *.r{text-align:right}
 table *.l{text-align:left}
 table p{word-break: break-word;}
