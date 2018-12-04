@@ -105,13 +105,13 @@ def index():
         **form
     )
 
-@app.route('/fan/', methods=["GET", "POST"])
-def fan():
-    template = jinja_env.get_template('fan.html')
+@app.route('/meme/', methods=["GET", "POST"])
+def meme():
+    template = jinja_env.get_template('meme.html')
     form = dict(
-        (k.strip(), MLStripper(v.strip()).get_data())
+        (k.strip(), v.strip())
         for k, v in request.args.items()
-        if k in ["left", "right", "longtext"])
+        if k in ["img"])
     return template.render(
         rendered=mdrendered(**form),
         **form
